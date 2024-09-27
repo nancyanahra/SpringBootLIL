@@ -14,11 +14,17 @@ import java.util.Map;
 @Service
 public class ReservationService {
     @Autowired
-    private RoomRepository roomRepository;
+    private final RoomRepository roomRepository;
     @Autowired
-    private GuestRepository guestRepository;
+    private final GuestRepository guestRepository;
     @Autowired
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
+
+    public ReservationService(RoomRepository roomRepository, GuestRepository guestRepository, ReservationRepository reservationRepository) {
+        this.roomRepository = roomRepository;
+        this.guestRepository = guestRepository;
+        this.reservationRepository = reservationRepository;
+    }
 
     public List<RoomReservation> getRoomReservationsForDate(Date date) {
         Iterable<Room> rooms = this.roomRepository.findAll();
