@@ -80,7 +80,33 @@ public class ReservationService {
         }
 
 
+    public void addGuest(Guest newGuest) {
+
+        if(null == newGuest){
+            throw new RuntimeException("Guest cannot be null");
+
+        }
+        //save method will return the object that's just been saved
+        this.guestRepository.save(newGuest);
+
     }
+
+    public List<Room> getRooms() {
+        Iterable<Room> rooms = this.roomRepository.findAll();
+        List<Room> roomList = new ArrayList<>();
+        rooms.forEach(room -> {roomList.add(room);});
+
+        roomList.sort(new Comparator<Room>() {
+            @Override
+            public int compare(Room o1, Room o2) {
+                return o1.getRoomNumber().compareTo(o2.getRoomNumber());
+            }
+
+
+        });
+        return roomList;
+    }
+}
 
 
 

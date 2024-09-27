@@ -10,7 +10,7 @@ public class Guest {
 
     @Id
     //default strategy, but prefer to go ahead and specify it
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name="GUEST_ID")
     private long id;
