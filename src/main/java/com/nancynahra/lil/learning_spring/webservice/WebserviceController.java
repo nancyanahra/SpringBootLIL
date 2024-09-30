@@ -5,6 +5,7 @@ import com.nancynahra.lil.learning_spring.business.RoomReservation;
 import com.nancynahra.lil.learning_spring.data.Guest;
 import com.nancynahra.lil.learning_spring.data.Room;
 import com.nancynahra.lil.learning_spring.util.DateUtils;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +14,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class WebserviceController {
+public class WebserviceController implements ErrorController {
+
+    private static final String PATH = "/error";
+
     private final DateUtils dateUtils;
     private final ReservationService reservationService;
 
     public WebserviceController(DateUtils dateUtils, ReservationService reservationService) {
         this.dateUtils = dateUtils;
         this.reservationService = reservationService;
+    }
+
+    //added two methods below to account for white label error page
+    @RequestMapping(value=PATH)
+    public String error(){
+        return "error handling";
+    }
+
+    public String getErrorPath(){
+        return PATH;
     }
 
     @RequestMapping(path="/reservations", method = RequestMethod.GET)
@@ -30,6 +44,7 @@ public class WebserviceController {
 
     }
 
+    // exposing a service layer through REST
     @RequestMapping(path="/guests", method = RequestMethod.GET)
     public List<Guest> getGuests(){
 
@@ -48,6 +63,13 @@ public class WebserviceController {
     public List<Room> getRooms(){
 
         return this.reservationService.getRooms();
+    }
+
+    //why GetMapping vs PostMapping?
+    //
+    @GetMapping("/addordelete")
+    public void addGuestUI(Guest newGuest){
+        this.reservationService.addGuestUI(newGuest);
     }
 
 

@@ -78,8 +78,6 @@ public class ReservationService {
         });
             return guestList;
         }
-
-
     public void addGuest(Guest newGuest) {
 
         if(null == newGuest){
@@ -88,6 +86,21 @@ public class ReservationService {
         }
         //save method will return the object that's just been saved
         this.guestRepository.save(newGuest);
+
+
+    }
+
+    // Couldn't use addGuest for 2 mappings in WebService Controller so I made this new method
+    public String addGuestUI (Guest newGuest) {
+
+        if(null == newGuest){
+            throw new RuntimeException("Guest cannot be null");
+
+        }
+        //save method will return the object that's just been saved
+        this.guestRepository.save(newGuest);
+
+        return newGuest.toString();
 
     }
 
