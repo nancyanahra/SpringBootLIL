@@ -65,7 +65,7 @@ public class ReservationService {
     public List<Guest> getGuests(){
         Iterable<Guest> guests = this.guestRepository.findAll();
         List<Guest> guestList = new ArrayList<>();
-        guests.forEach(guest -> {guestList.add(guest);});
+        guests.forEach(guestList::add);
         guestList.sort( new Comparator<Guest>() {
              @Override
             public int compare(Guest o1, Guest o2) {
@@ -78,6 +78,8 @@ public class ReservationService {
         });
             return guestList;
         }
+
+
     public void addGuest(Guest newGuest) {
 
         if(null == newGuest){
@@ -89,6 +91,8 @@ public class ReservationService {
 
 
     }
+
+
 
     // Couldn't use addGuest for 2 mappings in WebService Controller so I made this new method
     public String addGuestUI (Guest newGuest) {
@@ -118,6 +122,12 @@ public class ReservationService {
 
         });
         return roomList;
+    }
+
+    public String displayPage() {
+
+        return "Displaying the modify page";
+
     }
 }
 

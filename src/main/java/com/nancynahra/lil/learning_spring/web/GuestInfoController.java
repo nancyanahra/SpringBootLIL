@@ -21,7 +21,7 @@ public class GuestInfoController {
         this.reservationService = reservationService;
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public String getGuests(Model model) {
 
         //made method in Reservation Service to make list of guests

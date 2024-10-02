@@ -22,21 +22,23 @@ public class ModifyController {
 
     }
 
-/*
+
     @RequestMapping(method = RequestMethod.GET)
     public String showModifyPage(Model model) {
+
+        model.addAttribute("message", reservationService.displayPage());
         return "modify";
 
     }
-*/
+
 
     // not too sure what's going on with the naming - why this one can just be addGuest and not addGuestUI
-    @RequestMapping(method = RequestMethod.GET)
-    public String addGuestUI(Model model, Guest newGuest){
-
-        model.addAttribute("newguest", this.reservationService.addGuestUI(newGuest));
-
-        return "modify";
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String addGuestUI(Model model, Guest newGuest){
+//
+//        model.addAttribute("newguest", this.reservationService.addGuestUI(newGuest));
+//
+//        return "modify";
+//    }
 
 }
