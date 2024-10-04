@@ -91,9 +91,10 @@ public class ReservationService {
 
     public void addGuest( Guest newGuest) {
 
-
+        Guest savedGuest = guestRepository.save(newGuest);
+        System.out.println("Guest saved: " + savedGuest);
         //save method will return the object that's just been saved
-        guestRepository.save(newGuest);
+
 
 
     }

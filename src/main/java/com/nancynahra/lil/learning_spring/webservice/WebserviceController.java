@@ -78,13 +78,13 @@ public class WebserviceController implements ErrorController {
     }
 
 
-    @PostMapping("/addGuest")
-    public String addGuest(@ModelAttribute Guest newGuest){
-
-        reservationService.addGuest(newGuest);
-        return "redirect:/addordelete";
-
-    }
+//    @PostMapping("/addordelete")
+//    public String addGuest(@ModelAttribute Guest guest) {
+//
+//        reservationService.addGuest(guest);
+//        return "redirect:/addordelete";
+//
+//    }
 
 
 

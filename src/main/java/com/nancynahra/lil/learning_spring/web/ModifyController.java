@@ -20,12 +20,13 @@ public class ModifyController {
     private final ReservationService reservationService;
 
 
+
+
     public ModifyController(ReservationService reservationService, GuestRepository guestRepository) {
         this.reservationService = reservationService;
 
 
     }
-
 
     @RequestMapping(method = RequestMethod.GET)
     public String showModifyPage(Model model) {
@@ -35,30 +36,11 @@ public class ModifyController {
 
     }
 
-//    @RequestParam("firstName") String firstName,
-//    @RequestParam("lastName") String lastName,
-//    @RequestParam("address") String address,
-//    @RequestParam("email") String email,
-//    @RequestParam("country") String country,
-//    @RequestParam("state") String state,
-//    @RequestParam("phoneNumber") String phoneNumber,
-//public String submitInput( Model model
-//) {
-//    System.out.println("User input: " + firstName + lastName + address + email + country + state + phoneNumber);
-//    model.addAttribute("guest", new Guest(firstName, lastName, email, address, country, state, phoneNumber ));
-//
-//    // THIS IS WHERE I LEFT OFF!!! GET BACK TO THIS AFTER CLASS
-//    //  guestRepository.save(new Guest(firstName, lastName, email, address, country, state, phoneNumber));
-//    return "modify";
-//
-//}
-
     @PostMapping("/addGuest")
     public String submitInput( Model model, Guest guest) {
-        System.out.println("User input:");
-        model.addAttribute("guest", guest);
+        System.out.println("User input:" + guest);
 
-        // THIS IS WHERE I LEFT OFF!!! GET BACK TO THIS AFTER CLASS
+        this.reservationService.addGuest(guest);
       //  guestRepository.save(new Guest(firstName, lastName, email, address, country, state, phoneNumber));
         return "modify";
 
