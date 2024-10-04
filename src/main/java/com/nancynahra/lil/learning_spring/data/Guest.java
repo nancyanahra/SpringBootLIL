@@ -8,6 +8,8 @@ public class Guest {
 
 
 
+
+
     @Id
     //default strategy, but prefer to go ahead and specify it
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +36,29 @@ public class Guest {
     private String state;
     @Column(name="PHONE_NUMBER")
     private String phoneNumber;
+
+    public Guest() {
+        this.id = 0;
+        this.firstName = null;
+        this.lastName = null;
+        this.emailAddress = null;
+        this.address = null;
+        this.country = null;
+        this.state = null;
+        this.phoneNumber = null;
+    }
+
+
+        public Guest(String firstName, String lastName, String emailAddress, String address, String country, String state, String phoneNumber) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.country = country;
+        this.state = state;
+        this.phoneNumber = phoneNumber;
+    }
 
     public long getId() {
         return id;

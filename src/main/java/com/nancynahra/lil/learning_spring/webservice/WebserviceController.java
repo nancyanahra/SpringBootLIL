@@ -53,11 +53,11 @@ public class WebserviceController implements ErrorController {
     }
 
 
-//    @PostMapping("/guests")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void addGuest(@RequestBody Guest newGuest){
-//      this.reservationService.addGuest(newGuest);
-//    }
+    @PostMapping("/guests")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addGuest(@RequestBody Guest newGuest){
+      this.reservationService.addGuest(newGuest);
+    }
 
     @GetMapping("/rooms")
     public List<Room> getRooms(){
@@ -73,6 +73,9 @@ public class WebserviceController implements ErrorController {
         return this.reservationService.displayPage();
 
     }
+
+
+
 
 //    public void addGuestUI(Guest newGuest){
 //        this.reservationService.addGuestUI(newGuest);

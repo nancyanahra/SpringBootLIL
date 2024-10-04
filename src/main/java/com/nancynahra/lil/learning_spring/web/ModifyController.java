@@ -31,6 +31,22 @@ public class ModifyController {
 
     }
 
+    @PostMapping("/addGuest")
+    public String submitInput(
+        @RequestParam("firstName") String firstName,
+        @RequestParam("lastName") String lastName,
+        @RequestParam("address") String address,
+        @RequestParam("email") String email,
+        @RequestParam("country") String country,
+        @RequestParam("state") String state,
+        @RequestParam("phoneNumber") String phoneNumber,
+        Model model
+    ) {
+        System.out.println("User input: " + firstName + lastName + address + email + country + state + phoneNumber);
+        model.addAttribute("guest", new Guest(firstName, lastName, email, address, country, state, phoneNumber ));
+        return "modify";
+
+    }
 
     // not too sure what's going on with the naming - why this one can just be addGuest and not addGuestUI
 //    @RequestMapping(method = RequestMethod.GET)
