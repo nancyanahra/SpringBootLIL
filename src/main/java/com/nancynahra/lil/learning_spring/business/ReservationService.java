@@ -3,6 +3,7 @@ package com.nancynahra.lil.learning_spring.business;
 import com.nancynahra.lil.learning_spring.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,6 +11,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
+//Final Flow:
+//User submits the form on modify.html.
+//Data is sent to the WebserviceController, which binds the form data to a Guest object.
+//The Guest object is passed to the ReservationService, where it is saved to the database using the guestRepository.
+//Upon successful submission, the user is redirected back to the modify page.
+
 
 @Service
 public class ReservationService {
@@ -80,14 +89,11 @@ public class ReservationService {
         }
 
 
-    public void addGuest(Guest newGuest) {
+    public void addGuest( Guest newGuest) {
 
-        if(null == newGuest){
-            throw new RuntimeException("Guest cannot be null");
 
-        }
         //save method will return the object that's just been saved
-        this.guestRepository.save(newGuest);
+        guestRepository.save(newGuest);
 
 
     }

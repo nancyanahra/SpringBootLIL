@@ -3,6 +3,7 @@ package com.nancynahra.lil.learning_spring.webservice;
 import com.nancynahra.lil.learning_spring.business.ReservationService;
 import com.nancynahra.lil.learning_spring.business.RoomReservation;
 import com.nancynahra.lil.learning_spring.data.Guest;
+import com.nancynahra.lil.learning_spring.data.GuestRepository;
 import com.nancynahra.lil.learning_spring.data.Room;
 import com.nancynahra.lil.learning_spring.util.DateUtils;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -20,10 +21,12 @@ public class WebserviceController implements ErrorController {
 
     private final DateUtils dateUtils;
     private final ReservationService reservationService;
+   // private final GuestRepository guestRepository;
 
-    public WebserviceController(DateUtils dateUtils, ReservationService reservationService) {
+    public WebserviceController(DateUtils dateUtils, ReservationService reservationService, GuestRepository guestRepository) {
         this.dateUtils = dateUtils;
         this.reservationService = reservationService;
+        //this.guestRepository = guestRepository;
     }
 
     //added two methods below to account for white label error page
@@ -53,11 +56,11 @@ public class WebserviceController implements ErrorController {
     }
 
 
-    @PostMapping("/guests")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addGuest(@RequestBody Guest newGuest){
-      this.reservationService.addGuest(newGuest);
-    }
+//    @PostMapping("/guests")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public void addGuest(@RequestBody Guest newGuest){
+//      this.reservationService.addGuest(newGuest);
+//    }
 
     @GetMapping("/rooms")
     public List<Room> getRooms(){
@@ -75,11 +78,15 @@ public class WebserviceController implements ErrorController {
     }
 
 
+    @PostMapping("/addGuest")
+    public String addGuest(@ModelAttribute Guest newGuest){
+
+        reservationService.addGuest(newGuest);
+        return "redirect:/addordelete";
+
+    }
 
 
-//    public void addGuestUI(Guest newGuest){
-//        this.reservationService.addGuestUI(newGuest);
-//    }
 
 
 }

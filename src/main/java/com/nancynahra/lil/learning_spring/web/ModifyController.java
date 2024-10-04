@@ -4,10 +4,12 @@ package com.nancynahra.lil.learning_spring.web;
 
 import com.nancynahra.lil.learning_spring.business.ReservationService;
 import com.nancynahra.lil.learning_spring.data.Guest;
+import com.nancynahra.lil.learning_spring.data.GuestRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -17,8 +19,10 @@ public class ModifyController {
 
     private final ReservationService reservationService;
 
-    public ModifyController(ReservationService reservationService) {
+
+    public ModifyController(ReservationService reservationService, GuestRepository guestRepository) {
         this.reservationService = reservationService;
+
 
     }
 
@@ -26,24 +30,36 @@ public class ModifyController {
     @RequestMapping(method = RequestMethod.GET)
     public String showModifyPage(Model model) {
 
-        model.addAttribute("message", reservationService.displayPage());
+        model.addAttribute("guest", new Guest());
         return "modify";
 
     }
 
+//    @RequestParam("firstName") String firstName,
+//    @RequestParam("lastName") String lastName,
+//    @RequestParam("address") String address,
+//    @RequestParam("email") String email,
+//    @RequestParam("country") String country,
+//    @RequestParam("state") String state,
+//    @RequestParam("phoneNumber") String phoneNumber,
+//public String submitInput( Model model
+//) {
+//    System.out.println("User input: " + firstName + lastName + address + email + country + state + phoneNumber);
+//    model.addAttribute("guest", new Guest(firstName, lastName, email, address, country, state, phoneNumber ));
+//
+//    // THIS IS WHERE I LEFT OFF!!! GET BACK TO THIS AFTER CLASS
+//    //  guestRepository.save(new Guest(firstName, lastName, email, address, country, state, phoneNumber));
+//    return "modify";
+//
+//}
+
     @PostMapping("/addGuest")
-    public String submitInput(
-        @RequestParam("firstName") String firstName,
-        @RequestParam("lastName") String lastName,
-        @RequestParam("address") String address,
-        @RequestParam("email") String email,
-        @RequestParam("country") String country,
-        @RequestParam("state") String state,
-        @RequestParam("phoneNumber") String phoneNumber,
-        Model model
-    ) {
-        System.out.println("User input: " + firstName + lastName + address + email + country + state + phoneNumber);
-        model.addAttribute("guest", new Guest(firstName, lastName, email, address, country, state, phoneNumber ));
+    public String submitInput( Model model, Guest guest) {
+        System.out.println("User input:");
+        model.addAttribute("guest", guest);
+
+        // THIS IS WHERE I LEFT OFF!!! GET BACK TO THIS AFTER CLASS
+      //  guestRepository.save(new Guest(firstName, lastName, email, address, country, state, phoneNumber));
         return "modify";
 
     }
