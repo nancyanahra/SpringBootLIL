@@ -15,15 +15,30 @@ public class Reservation {
 
     @Column(name = "ROOM_ID")
     private Long roomId;
-    @Column(name = "GUEST_ID")
+    @Column(name = "GUEST_ID", insertable = false, updatable = false)
     private Long guestId;
     @Column(name = "RES_DATE")
     private Date reservationDate;
 
 
+    @ManyToOne
+    @JoinColumn(name = "GUEST_ID", referencedColumnName = "GUEST_ID")
+    private Guest guest;
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+
     public Long getId() {
         return id;
     }
+
+
 
     public Long getRoomId() {
         return roomId;

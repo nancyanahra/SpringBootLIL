@@ -2,6 +2,8 @@ package com.nancynahra.lil.learning_spring.data;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="GUEST")
 public class Guest {
@@ -13,7 +15,6 @@ public class Guest {
     @Id
     //default strategy, but prefer to go ahead and specify it
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name="GUEST_ID")
     private long id;
 
@@ -36,6 +37,9 @@ public class Guest {
     private String state;
     @Column(name="PHONE_NUMBER")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "guest", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<Reservation> reservations;
 
     public Guest() {
         this.id = 0;
@@ -64,6 +68,15 @@ public class Guest {
 //
 //
 //    }
+
+    public void setReservations(Set<Reservation> reservations) {
+
+        this.reservations = reservations;
+    }
+
+    public Set<Reservation> getReservations(){
+        return reservations;
+    }
 
     public long getId() {
         return id;

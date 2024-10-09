@@ -146,16 +146,17 @@ public class ReservationService {
         // add stuff here about finding if that guest has a room reservation
 
 
-        Reservation guestReservation = reservationRepository.findReservationByGuestId(guestToBeDeleted.getGuestId());
+//        Reservation guestReservation = reservationRepository.findReservationByGuestId(guestToBeDeleted.getGuestId());
+//
+//        if(guestReservation == null){
+//            guestRepository.delete(guestToBeDeleted);
+//        }else{
+//            System.out.println("delete the reservation for " + guestToBeDeleted.getFirstName());
+//            reservationRepository.delete(guestReservation);
+//            guestRepository.delete(guestToBeDeleted);
+//        }
 
-        if(guestReservation == null){
-            guestRepository.delete(guestToBeDeleted);
-        }else{
-            System.out.println("delete the reservation for " + guestToBeDeleted.getFirstName());
-            reservationRepository.delete(guestReservation);
-            guestRepository.delete(guestToBeDeleted);
-        }
-
+        guestRepository.delete(guestToBeDeleted);
         System.out.println("Guest deleted: " + guestToBeDeleted);
 
     }
