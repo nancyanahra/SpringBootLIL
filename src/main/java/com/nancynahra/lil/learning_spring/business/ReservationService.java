@@ -35,6 +35,13 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
+    public void deleteReservation(Reservation reservation) {
+
+        this.reservationRepository.delete(reservation);
+
+
+    }
+
     public List<RoomReservation> getRoomReservationsForDate(Date date) {
         Iterable<Room> rooms = this.roomRepository.findAll();
         Map<Long, RoomReservation> roomReservationMap = new HashMap();
@@ -92,6 +99,8 @@ public class ReservationService {
     public void addGuest( Guest newGuest) {
 
         Guest savedGuest = guestRepository.save(newGuest);
+
+
         System.out.println("Guest saved: " + savedGuest);
         //save method will return the object that's just been saved
 
@@ -129,6 +138,26 @@ public class ReservationService {
 
         });
         return roomList;
+    }
+
+    // Should this method be in this service class? Or somewhere else
+    public void deleteGuest(Guest guestToBeDeleted) {
+
+        // add stuff here about finding if that guest has a room reservation
+
+
+        Reservation guestReservation = reservationRepository.findReservationByGuestId(guestToBeDeleted.getGuestId());
+
+        if(guestReservation == null){
+            guestRepository.delete(guestToBeDeleted);
+        }else{
+            System.out.println("delete the reservation for " + guestToBeDeleted.getFirstName());
+            reservationRepository.delete(guestReservation);
+            guestRepository.delete(guestToBeDeleted);
+        }
+
+        System.out.println("Guest deleted: " + guestToBeDeleted);
+
     }
 
     public String displayPage() {

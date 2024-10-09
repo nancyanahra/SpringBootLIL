@@ -77,7 +77,6 @@ public class WebserviceController implements ErrorController {
 
     }
 
-
 //    @PostMapping("/addordelete")
 //    public String addGuest(@ModelAttribute Guest guest) {
 //

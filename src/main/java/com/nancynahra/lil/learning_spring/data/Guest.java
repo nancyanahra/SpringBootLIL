@@ -60,6 +60,11 @@ public class Guest {
         this.phoneNumber = phoneNumber;
     }
 
+//    public Guest getGuestByLastNameAndFirstName(String lastName, String firstName) {
+//
+//
+//    }
+
     public long getId() {
         return id;
     }

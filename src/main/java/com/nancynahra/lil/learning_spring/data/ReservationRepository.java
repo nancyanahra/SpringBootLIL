@@ -7,4 +7,9 @@ import java.sql.Date;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
     Iterable<Reservation> findReservationByReservationDate(Date reservationDate);
+
+    Reservation findReservationByGuestId(Long guestId);
+
+
+
 }
